@@ -18,7 +18,7 @@ import java.util.Set;
 public class Answer {
     @Id     //Primary Key로 지정
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;     //질문 데이터의 고유 번호
+    private Integer id;     //질문 데이터의 고유 번호ㅁ
 
     @Column(columnDefinition = "TEXT")  //문자열 길이 제한 제거
     private String content;
