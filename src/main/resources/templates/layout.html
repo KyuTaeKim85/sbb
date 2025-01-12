@@ -6,10 +6,17 @@
     <title>Hello, sbb!</title>
     <link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+    <script th:src="@{/bootstrap.min.js}"></script>
 </head>
 <body>
+    <!-- 네비게이션바 -->
+    <nav th:replace="~{navbar :: navbarFragment}"></nav>
     <!-- 기본 템플릿 안에 들어갈 html문서 내용 시작-->
     <th:block layout:fragment="content"></th:block>
     <!-- 기본 템플릿 안에 들어갈 html문서 내용 마감-->
+
+    <!-- 자바스크립트 Start -->
+    <th:block layout:fragment="script"></th:block>
+    <!-- 자바스크립트 End -->
 </body>
 </html>

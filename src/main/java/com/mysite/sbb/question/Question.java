@@ -2,6 +2,8 @@ package com.mysite.sbb.question;
 
 
 import com.mysite.sbb.answer.Answer;
+import com.mysite.sbb.comment.Comment;
+import com.mysite.sbb.user.SiteUser;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,6 +11,7 @@ import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -26,8 +29,39 @@ public class Question {
     private String content;     //질문 데이터의 내용
 
     private LocalDateTime createDate;   //질문 데이터 생성일자
+    private LocalDateTime modifyDate;   //질문 데이터 수정일자
 
     //@OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private List<Answer> answerList;
+
+    @ManyToOne
+    private SiteUser author;
+    
+    /*
+    List(Array), Set
+    List(배열)
+    1. 값을 넣을 때 중복을 허용
+    2. 순서가 있음.
+    Set(집합)
+    1. 중복을 허용하지 않음
+    2. 순서가 없음
+     */
+
+    @ManyToMany
+    Set<SiteUser> voter;
+
+    @OneToMany(mappedBy = "question")
+    private List<Comment> commentList;
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "id=" + id +
+                ", subject='" + subject + '\'' +
+                ", content='" + content + '\'' +
+                ", createDate=" + createDate +
+                ", answerList=" + answerList +
+                '}';
+    }
 }
